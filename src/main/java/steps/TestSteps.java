@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,8 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.TestPage;
-
-
+import cucumber.api.java.en.When;
 
 public class TestSteps
 {
@@ -22,7 +22,8 @@ public class TestSteps
     WebDriverWait wait = new WebDriverWait(fox, 10);
     Actions act = new Actions(fox);
 
-    public void openPage()
+    @When("^User Navigate to LogIn Page$")
+    public void user_Navigate_to_LogIn_Page() throws Throwable
     {
         fox.get(TestPage.sportPage);
         fox.manage().window().maximize();
@@ -33,13 +34,14 @@ public class TestSteps
             Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
         }
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
-        waitAndClickCSS(TestPage.sportCloseCss);
+        waitAndClickXPath(TestPage.sportCloseAdvertXp);
         waitAndClickId(TestPage.sportAcceptCookiesId);
 
-        fox.navigate().to("/mens/mens-boots");
+        fox.navigate().to(TestPage.sportBootsPage);
     }
 
     public void selectProduct()
+
     {
         try {
             Thread.sleep(1000);
@@ -49,17 +51,17 @@ public class TestSteps
         }
 
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
-        waitAndClickCSS(TestPage.sportCloseCss);
+        waitAndClickXPath(TestPage.sportCloseAdvertXp);
 
         waitAndClickXPath(TestPage.sportFirstBootXp);
 
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
-        waitAndClickCSS(TestPage.sportCloseCss);
+        waitAndClickXPath(TestPage.sportCloseAdvertXp);
 
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
 
         selectElementInList(TestPage.sportSizeList, "class", "");
-        waitAndClickId(TestPage.sportAddToBagId);
+        waitAndClickXPath(TestPage.sportAddToBagXp);
 
         fox.navigate().back();
 
@@ -75,11 +77,11 @@ public class TestSteps
         }
 
         selectElementInList(TestPage.sportSizeList, "class", "");
-        waitAndClickId(TestPage.sportAddToBagId);
+        waitAndClickXPath(TestPage.sportAddToBagXp);
 
         waitAndClickId(TestPage.sportViewBagId);
         waitAndClickXPath(TestPage.sportAddButtonXpath);
-        waitAndClickId(TestPage.sportUpdateBagId);
+        waitAndClickXPath(TestPage.sportUpdateBagXp);
 
         try {
             Thread.sleep(1000);
@@ -106,7 +108,6 @@ public class TestSteps
         if (priceA + priceB == priceTotal) {
             System.out.println(priceTotal + " The SUM is correct!");
         }
-
     }
 
     public void closeTest()
@@ -114,7 +115,7 @@ public class TestSteps
         fox.quit();
     }
 
-    public void selectElementInList(String locator, String attribute, String value)
+    private void selectElementInList(String locator, String attribute, String value)
     {
         List<WebElement> list = fox.findElements(By.xpath(locator));
         int count = list.size();
@@ -123,13 +124,14 @@ public class TestSteps
             WebElement getList = list.get(i);
             String color = getList.getAttribute(attribute);
             if (color.equalsIgnoreCase(value)) {
+                wait.until(ExpectedConditions.visibilityOf(getList));
                 getList.click();
                 break;
             }
         }
     }
 
-    public void selectElementInList(String locator, String locator2, String attribute, String value)
+    private void selectElementInList(String locator, String locator2, String attribute, String value)
     {
         List<WebElement> list = fox.findElements(By.xpath(locator));
         List<WebElement> list2 = fox.findElements(By.xpath(locator2));
@@ -140,6 +142,7 @@ public class TestSteps
             WebElement getUList = list2.get(i);
             String color = getList.getAttribute(attribute);
             if (color.equalsIgnoreCase(value)) {
+                wait.until(ExpectedConditions.visibilityOf(getList));
                 getUList.click();
                 break;
             }

@@ -49,7 +49,6 @@ goto fail
 @rem Get command-line arguments, handling Windows variants
 
 if not "%OS%" == "Windows_NT" goto win9xME_args
-if "%@eval[2+2]" == "4" goto 4NT_args
 
 :win9xME_args
 @rem Slurp the command line arguments.
@@ -60,16 +59,11 @@ set _SKIP=2
 if "x%~1" == "x" goto execute
 
 set CMD_LINE_ARGS=%*
-goto execute
-
-:4NT_args
-@rem Get arguments from the 4NT Shell from JP Software
-set CMD_LINE_ARGS=%$
 
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\seleniumT.jar;%APP_HOME%\lib\selenium-java-3.3.1.jar;%APP_HOME%\lib\selenium-chrome-driver-3.3.1.jar;%APP_HOME%\lib\selenium-edge-driver-3.3.1.jar;%APP_HOME%\lib\selenium-firefox-driver-3.3.1.jar;%APP_HOME%\lib\selenium-ie-driver-3.3.1.jar;%APP_HOME%\lib\selenium-opera-driver-3.3.1.jar;%APP_HOME%\lib\selenium-safari-driver-3.3.1.jar;%APP_HOME%\lib\phantomjsdriver-1.4.0.jar;%APP_HOME%\lib\htmlunit-driver-2.24.jar;%APP_HOME%\lib\selenium-remote-driver-3.3.1.jar;%APP_HOME%\lib\selenium-support-3.3.1.jar;%APP_HOME%\lib\htmlunit-2.24.jar;%APP_HOME%\lib\hamcrest-library-1.3.jar;%APP_HOME%\lib\junit-4.12.jar;%APP_HOME%\lib\xalan-2.7.2.jar;%APP_HOME%\lib\commons-lang3-3.5.jar;%APP_HOME%\lib\httpclient-4.5.2.jar;%APP_HOME%\lib\httpmime-4.5.2.jar;%APP_HOME%\lib\commons-codec-1.10.jar;%APP_HOME%\lib\htmlunit-core-js-2.23.jar;%APP_HOME%\lib\neko-htmlunit-2.24.jar;%APP_HOME%\lib\cssparser-0.9.21.jar;%APP_HOME%\lib\commons-io-2.5.jar;%APP_HOME%\lib\commons-logging-1.2.jar;%APP_HOME%\lib\websocket-client-9.2.20.v20161216.jar;%APP_HOME%\lib\hamcrest-core-1.3.jar;%APP_HOME%\lib\serializer-2.7.2.jar;%APP_HOME%\lib\httpcore-4.4.4.jar;%APP_HOME%\lib\xercesImpl-2.11.0.jar;%APP_HOME%\lib\sac-1.3.jar;%APP_HOME%\lib\jetty-util-9.2.20.v20161216.jar;%APP_HOME%\lib\jetty-io-9.2.20.v20161216.jar;%APP_HOME%\lib\websocket-common-9.2.20.v20161216.jar;%APP_HOME%\lib\xml-apis-1.4.01.jar;%APP_HOME%\lib\websocket-api-9.2.20.v20161216.jar;%APP_HOME%\lib\selenium-api-3.3.1.jar;%APP_HOME%\lib\cglib-nodep-3.2.4.jar;%APP_HOME%\lib\commons-exec-1.3.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\guava-21.0.jar;%APP_HOME%\lib\jna-platform-4.1.0.jar;%APP_HOME%\lib\jna-4.1.0.jar
+set CLASSPATH=%APP_HOME%\lib\seleniumT.jar;%APP_HOME%\lib\selenium-java-3.3.1.jar;%APP_HOME%\lib\cucumber-java-1.2.5.jar;%APP_HOME%\lib\cucumber-junit-1.2.5.jar;%APP_HOME%\lib\selenium-chrome-driver-3.3.1.jar;%APP_HOME%\lib\selenium-edge-driver-3.3.1.jar;%APP_HOME%\lib\selenium-firefox-driver-3.3.1.jar;%APP_HOME%\lib\selenium-ie-driver-3.3.1.jar;%APP_HOME%\lib\selenium-opera-driver-3.3.1.jar;%APP_HOME%\lib\selenium-safari-driver-3.3.1.jar;%APP_HOME%\lib\phantomjsdriver-1.4.0.jar;%APP_HOME%\lib\htmlunit-driver-2.24.jar;%APP_HOME%\lib\cucumber-core-1.2.5.jar;%APP_HOME%\lib\junit-4.12.jar;%APP_HOME%\lib\selenium-remote-driver-3.3.1.jar;%APP_HOME%\lib\cucumber-html-0.2.3.jar;%APP_HOME%\lib\cucumber-jvm-deps-1.0.5.jar;%APP_HOME%\lib\gherkin-2.12.2.jar;%APP_HOME%\lib\hamcrest-core-1.3.jar;%APP_HOME%\lib\selenium-support-3.3.1.jar;%APP_HOME%\lib\htmlunit-2.24.jar;%APP_HOME%\lib\hamcrest-library-1.3.jar;%APP_HOME%\lib\xalan-2.7.2.jar;%APP_HOME%\lib\commons-lang3-3.5.jar;%APP_HOME%\lib\httpclient-4.5.2.jar;%APP_HOME%\lib\httpmime-4.5.2.jar;%APP_HOME%\lib\commons-codec-1.10.jar;%APP_HOME%\lib\htmlunit-core-js-2.23.jar;%APP_HOME%\lib\neko-htmlunit-2.24.jar;%APP_HOME%\lib\cssparser-0.9.21.jar;%APP_HOME%\lib\commons-io-2.5.jar;%APP_HOME%\lib\commons-logging-1.2.jar;%APP_HOME%\lib\websocket-client-9.2.20.v20161216.jar;%APP_HOME%\lib\serializer-2.7.2.jar;%APP_HOME%\lib\httpcore-4.4.4.jar;%APP_HOME%\lib\xercesImpl-2.11.0.jar;%APP_HOME%\lib\sac-1.3.jar;%APP_HOME%\lib\jetty-util-9.2.20.v20161216.jar;%APP_HOME%\lib\jetty-io-9.2.20.v20161216.jar;%APP_HOME%\lib\websocket-common-9.2.20.v20161216.jar;%APP_HOME%\lib\xml-apis-1.4.01.jar;%APP_HOME%\lib\websocket-api-9.2.20.v20161216.jar;%APP_HOME%\lib\selenium-api-3.3.1.jar;%APP_HOME%\lib\cglib-nodep-3.2.4.jar;%APP_HOME%\lib\commons-exec-1.3.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\guava-21.0.jar;%APP_HOME%\lib\jna-platform-4.1.0.jar;%APP_HOME%\lib\jna-4.1.0.jar
 
 @rem Execute seleniumT
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %SELENIUM_T_OPTS%  -classpath "%CLASSPATH%" mainPack.MainTest %CMD_LINE_ARGS%
