@@ -34,9 +34,8 @@ public class TestSteps
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
         waitAndClickXPath(TestPage.sportCloseAdvertXp);
         waitAndClickId(TestPage.sportAcceptCookiesId);
-
-//        fox.findElement(By.xpath(TestPage.testBootsXp)).click();
-        fox.navigate().to("/mens/mens-boots");
+        waitAndClickXPath(TestPage.sportMensPageXp);
+        waitAndClickXPath(TestPage.sportBootsPageXp);
     }
 
     public void selectProduct()
