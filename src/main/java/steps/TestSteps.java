@@ -53,6 +53,12 @@ public class TestSteps
 
         waitAndClickXPath(TestPage.sportMensPageXp);
         waitAndClickXPath(TestPage.sportBootsPageXp);
+        
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         selectElementInList(TestPage.sportFirstBootXp, TestPage.sportSecondBootXp, "innerHTML", "Firetrap");
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
