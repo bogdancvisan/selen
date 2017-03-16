@@ -21,9 +21,3 @@ dependencies {
     testCompile "info.cukes:cucumber-junit:1.2.5"
     testCompile "junit:junit:4.10"
 }
-
-test {
-    useJUnit()
-    testLogging.showStandardStreams = true
-    systemProperties System.getProperties()
-}

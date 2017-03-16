@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,25 +7,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.TestPage;
-import cucumber.api.java.en.When;
 
 public class TestSteps
 {
-
-    WebDriver fox = new FirefoxDriver();
+    FirefoxProfile fp = new FirefoxProfile();
+    WebDriver fox = new FirefoxDriver(fp);
     WebElement element;
     WebDriverWait wait = new WebDriverWait(fox, 10);
     Actions act = new Actions(fox);
-
-    @When("^User Navigate to LogIn Page$")
+    
     public void user_Navigate_to_LogIn_Page() throws Throwable
     {
+        fp.setPreference("xpinstall.signatures.required", false);
+        fp.setPreference("browser.startup.homepage_override.mstone", "ignore"); 
+        fp.setPreference("startup.homepage_welcome_url.additional", "about:blank"); 
+        fox.manage().deleteAllCookies();
         fox.get(TestPage.sportPage);
         fox.manage().window().maximize();
+        
         try {
             Thread.sleep(1000);
         }
@@ -37,7 +40,8 @@ public class TestSteps
         waitAndClickXPath(TestPage.sportCloseAdvertXp);
         waitAndClickId(TestPage.sportAcceptCookiesId);
 
-        fox.navigate().to(TestPage.sportBootsPage);
+//        fox.findElement(By.xpath(TestPage.testBootsXp)).click();
+        fox.navigate().to("/mens/mens-boots");
     }
 
     public void selectProduct()
