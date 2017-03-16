@@ -51,7 +51,8 @@ public class TestSteps
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
 
-        fox.navigate().back();
+        waitAndClickXPath(TestPage.sportMensPageXp);
+        waitAndClickXPath(TestPage.sportBootsPageXp);
 
         selectElementInList(TestPage.sportFirstBootXp, TestPage.sportSecondBootXp, "innerHTML", "Firetrap");
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
