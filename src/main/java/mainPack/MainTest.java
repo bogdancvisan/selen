@@ -12,7 +12,7 @@ public class MainTest
         if (fileW.canExecute()) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/gecko/geckodriver.exe");
         }
-        else if (fileU.canExecute()) {
+        else {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/gecko/geckodriver");
         }
         TestSteps test = new TestSteps();

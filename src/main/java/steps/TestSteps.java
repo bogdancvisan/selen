@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,17 +14,13 @@ import page.TestPage;
 
 public class TestSteps
 {
-    FirefoxProfile fp = new FirefoxProfile();
-    WebDriver fox = new FirefoxDriver(fp);
+    WebDriver fox = new FirefoxDriver();
     WebElement element;
     WebDriverWait wait = new WebDriverWait(fox, 10);
     Actions act = new Actions(fox);
     
     public void user_Navigate_to_LogIn_Page() throws Throwable
     {
-        fp.setPreference("xpinstall.signatures.required", false);
-        fp.setPreference("browser.startup.homepage_override.mstone", "ignore"); 
-        fp.setPreference("startup.homepage_welcome_url.additional", "about:blank"); 
         fox.manage().deleteAllCookies();
         fox.get(TestPage.sportPage);
         fox.manage().window().maximize();
