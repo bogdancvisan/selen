@@ -7,8 +7,8 @@ public class TestPage
     public static String sportBootsPageXp = ".//*[@id[contains(.,'_HtmlModule_lblContent')]]/div/div/div[2]/div[1]/ul[1]/li[8]/a";
     public static String sportAdvertId = "advertPopup";
     public static String sportCloseAdvertXp = ".//*[@id='advertPopup']/div/div/div[1]/button";
-    public static String sportFirstBootXp = ".//*[@id='navlist']/li[1]/div/div[2]/div[1]/div[1]/a/span[1]";
-    public static String sportSecondBootXp = ".//*[@id='navlist']/li[7]/div/div[2]/div[1]/div[1]/a/span[1]";
+    public static String sportFirstBootXp =  ".//*[@id='navlist']/li/div/div/div/div/a/span[1]"; //".//*[@id='navlist']/li[1]/div/div[2]/div[1]/div[1]/a/span[1]"; 
+    public static String sportSecondBootXp = ".//*[@id='navlist']/li/div/div/div/div[1]"; //.//*[@id='navlist']/li[7]/div/div[2]/div[1]/div[1]/a/span[1]";
     public static String sportAddToBagXp = ".//*[@id[contains(.,'_sAddToBagWrapper')]]";
     public static String sportAcceptCookiesId = "inputAcceptCookies";
     public static String sportViewBagId = "aViewBag";

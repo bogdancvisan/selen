@@ -38,38 +38,27 @@ public class TestSteps
 
     public void secondPage() {
         waitAndClickXPath(TestPage.sportMensPageXp);
-
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
         waitAndClickXPath(TestPage.sportCloseAdvertXp);
-
         waitAndClickXPath(TestPage.sportBootsPageXp);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        waitAndClickXPath(TestPage.sportFirstBootXp);
-
+        selectElementInList(TestPage.sportFirstBootXp, TestPage.sportSecondBootXp, "innerHTML", "Karrimor");
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
 
         selectElementInList(TestPage.sportSizeList, "class", "");
-        
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
 
         fox.navigate().back();
 
-        waitAndClickXPath(TestPage.sportSecondBootXp);
-
+        selectElementInList(TestPage.sportFirstBootXp, TestPage.sportSecondBootXp, "innerHTML", "Firetrap");
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
-        
+
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
-        
+
         selectElementInList(TestPage.sportSizeList, "class", "");
-        
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
 
@@ -111,12 +100,13 @@ public class TestSteps
 
     private void selectElementInList(String locator, String attribute, String value) {
         List<WebElement> list = fox.findElements(By.xpath(locator));
+        wait.until(ExpectedConditions.visibilityOfAllElements(list));
         int count = list.size();
 
         for (int i = 0; i < count; i++) {
             WebElement getList = list.get(i);
-            String color = getList.getAttribute(attribute);
-            if (color.equalsIgnoreCase(value)) {
+            String attribValue = getList.getAttribute(attribute);
+            if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getList.click();
                 break;
@@ -125,6 +115,7 @@ public class TestSteps
     }
 
     private void selectElementInList(String locator, String locator2, String attribute, String value) {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locator)));
         List<WebElement> list = fox.findElements(By.xpath(locator));
         List<WebElement> list2 = fox.findElements(By.xpath(locator2));
         int count = list.size();
@@ -132,8 +123,8 @@ public class TestSteps
         for (int i = 0; i < count; i++) {
             WebElement getList = list.get(i);
             WebElement getUList = list2.get(i);
-            String color = getList.getAttribute(attribute);
-            if (color.equalsIgnoreCase(value)) {
+            String attribValue = getList.getAttribute(attribute);
+            if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getUList.click();
                 break;
