@@ -46,7 +46,6 @@ public class TestSteps
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
-
         selectElementInList(TestPage.sportSizeList, "class", "");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
@@ -54,17 +53,10 @@ public class TestSteps
         waitAndClickXPath(TestPage.sportMensPageXp);
         waitAndClickXPath(TestPage.sportBootsPageXp);
         
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         selectElementInList(TestPage.sportFirstBootXp, TestPage.sportSecondBootXp, "innerHTML", "Firetrap");
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
-
         selectElementInList(TestPage.sportSizeList, "class", "");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
@@ -113,7 +105,6 @@ public class TestSteps
         for (int i = 0; i < count; i++) {
             WebElement getList = list.get(i);
             String attribValue = getList.getAttribute(attribute);
-            System.out.println(attribValue);
             if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getList.click();
@@ -132,7 +123,6 @@ public class TestSteps
             WebElement getList = list.get(i);
             WebElement getUList = list2.get(i);
             String attribValue = getList.getAttribute(attribute);
-            System.out.println(attribValue);
             if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getUList.click();
