@@ -113,6 +113,7 @@ public class TestSteps
         for (int i = 0; i < count; i++) {
             WebElement getList = list.get(i);
             String attribValue = getList.getAttribute(attribute);
+            System.out.println(attribValue);
             if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getList.click();
@@ -131,6 +132,7 @@ public class TestSteps
             WebElement getList = list.get(i);
             WebElement getUList = list2.get(i);
             String attribValue = getList.getAttribute(attribute);
+            System.out.println(attribValue);
             if (attribValue.equalsIgnoreCase(value)) {
                 wait.until(ExpectedConditions.visibilityOf(getList));
                 getUList.click();
