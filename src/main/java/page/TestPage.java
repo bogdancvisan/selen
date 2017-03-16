@@ -20,4 +20,5 @@ public class TestPage
     public static String sportColorList = ".//*[@id[contains(.,'_ulColourImages')]]/li";//aria-checked="true"
     public static String sportColorListA = ".//*[@id[contains(.,'_ulColourImages')]]/li/a";
     public static String sportSizeList = ".//*[@id[contains(.,'_ulSizes')]]/li/a"; //class="tooltip sizeButtonli"
+    public static String sportSizeOne = ".//*[@id[contains(.,'_ulSizes')]]/li[1]/a";
 }

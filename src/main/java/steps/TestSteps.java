@@ -14,51 +14,50 @@ import page.TestPage;
 
 public class TestSteps
 {
+
     WebDriver fox = new FirefoxDriver();
     WebElement element;
     WebDriverWait wait = new WebDriverWait(fox, 10);
     Actions act = new Actions(fox);
-    
-    public void user_Navigate_to_LogIn_Page() throws Throwable
-    {
+
+    public void firstPage() {
         fox.manage().deleteAllCookies();
         fox.get(TestPage.sportPage);
         fox.manage().window().maximize();
-        
+
         try {
             Thread.sleep(1000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
         }
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
         waitAndClickXPath(TestPage.sportCloseAdvertXp);
         waitAndClickId(TestPage.sportAcceptCookiesId);
-        waitAndClickXPath(TestPage.sportMensPageXp);
-        waitAndClickXPath(TestPage.sportBootsPageXp);
+
     }
 
-    public void selectProduct()
+    public void secondPage() {
+        waitAndClickXPath(TestPage.sportMensPageXp);
 
-    {
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
+        waitAndClickXPath(TestPage.sportCloseAdvertXp);
+
+        waitAndClickXPath(TestPage.sportBootsPageXp);
         try {
             Thread.sleep(1000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
-        waitAndClickXPath(TestPage.sportCloseAdvertXp);
-
         waitAndClickXPath(TestPage.sportFirstBootXp);
-
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(TestPage.sportAdvertId)));
-        waitAndClickXPath(TestPage.sportCloseAdvertXp);
 
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
 
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
+
         selectElementInList(TestPage.sportSizeList, "class", "");
+        
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
 
         fox.navigate().back();
@@ -66,16 +65,17 @@ public class TestSteps
         waitAndClickXPath(TestPage.sportSecondBootXp);
 
         selectElementInList(TestPage.sportColorList, TestPage.sportColorListA, "aria-checked", "true");
-
-        try {
-            Thread.sleep(1000);
-        }
-        catch (InterruptedException ex) {
-            Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportSizeOne)));
+        
         selectElementInList(TestPage.sportSizeList, "class", "");
+        
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TestPage.sportAddToBagXp)));
         waitAndClickXPath(TestPage.sportAddToBagXp);
+
+    }
+
+    public void thirdPage() {
 
         waitAndClickId(TestPage.sportViewBagId);
         waitAndClickXPath(TestPage.sportAddButtonXpath);
@@ -83,8 +83,7 @@ public class TestSteps
 
         try {
             Thread.sleep(1000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(TestSteps.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -106,15 +105,11 @@ public class TestSteps
         if (priceA + priceB == priceTotal) {
             System.out.println(priceTotal + " The SUM is correct!");
         }
-    }
 
-    public void closeTest()
-    {
         fox.quit();
     }
 
-    private void selectElementInList(String locator, String attribute, String value)
-    {
+    private void selectElementInList(String locator, String attribute, String value) {
         List<WebElement> list = fox.findElements(By.xpath(locator));
         int count = list.size();
 
@@ -129,8 +124,7 @@ public class TestSteps
         }
     }
 
-    private void selectElementInList(String locator, String locator2, String attribute, String value)
-    {
+    private void selectElementInList(String locator, String locator2, String attribute, String value) {
         List<WebElement> list = fox.findElements(By.xpath(locator));
         List<WebElement> list2 = fox.findElements(By.xpath(locator2));
         int count = list.size();
@@ -147,21 +141,15 @@ public class TestSteps
         }
     }
 
-    private void waitAndClickId(String locator)
-    {
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
+    private void waitAndClickId(String locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.id(locator)));
         fox.findElement(By.id(locator)).click();
     }
 
-    private void waitAndClickCSS(String locator)
-    {
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
-        fox.findElement(By.cssSelector(locator)).click();
-    }
-
-    private void waitAndClickXPath(String locator)
-    {
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    private void waitAndClickXPath(String locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
         fox.findElement(By.xpath(locator)).click();
     }
 }
